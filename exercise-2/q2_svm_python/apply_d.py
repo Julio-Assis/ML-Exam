@@ -20,7 +20,9 @@ alpha, sv, b, _, slack = svmkern(train['data'], train['label'], C2, norm)
 # Unlike the linear SVM (which only needs the computed weight w and bias b),
 # the kernel SVM requires a subset of the training dataset (the support vectors)
 # to perform classification on a test dataset.
-result = np.sign(kern(test['data'].T, train['data'][sv].T, norm).T.dot(alpha[sv].T * train['label'][sv]) + b)
+
+result = np.sign(kern(test['data'].T, train['data'][sv].T, norm).T.dot((alpha[sv].T * train['label'][sv]).T) + b)
+result = result.reshape(-1)
 
 # Accuracy on test data
 accuracy = len(result[result == test['label']])/len(test['label'])
