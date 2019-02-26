@@ -1,3 +1,5 @@
+import numpy as np
+
 def linclass(weight, bias, data):
     # Linear Classifier
     #
@@ -11,6 +13,8 @@ def linclass(weight, bias, data):
 
     #####Insert your code here for subtask 1b#####
     # Perform linear classification i.e. class prediction
+    class_pred = np.sign(np.dot(data, weight) + bias)
+
     return class_pred
 
 
